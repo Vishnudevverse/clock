@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { useState, useEffect } from 'react';
+import './App.css'
 function App() {
+  const [time, setTime] = useState(new Date());
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const updateTime = () => {
+      setTime(new Date());
+    };
+    const timerId = setInterval(updateTime, 1000);
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [])
+
+  const formattedTime = time.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div>
+      {isVisible && (
+        <p style={{ fontSize: '3rem', fontWeight: 'bold' }}>
+          {formattedTime}
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      )}
+      <button onClick={() => setIsVisible(!isVisible)}>
+        {isVisible ? "Hide❕" : "Show❕"}
+      </button>
     </div>
   );
 }
