@@ -5,12 +5,12 @@ function App() {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    const updateTime = () => {
+    const timerId = setInterval(() => {
       setTime(new Date());
-    };
-    const timerId = setInterval(updateTime, 1000);
+    }, 1000);
     return () => {
       clearInterval(timerId);
+
     };
   }, [])
 
@@ -24,7 +24,7 @@ function App() {
   return (
     <div>
       {isVisible && (
-        <p style={{ fontSize: '3rem', fontWeight: 'bold' }}>
+        <p style={{ fontSize: '2rem', fontWeight: 'bold' }}>
           {formattedTime}
         </p>
       )}

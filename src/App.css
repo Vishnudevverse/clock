@@ -1,16 +1,18 @@
-div{
+div {
   display: flex;
   height: 100vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-p{
+
+p {
   padding: 10px;
   border: 5px solid black;
   border-radius: 10px;
 }
-button{
+
+button {
   padding: 5px;
   font-size: 1rem;
   border: none;
